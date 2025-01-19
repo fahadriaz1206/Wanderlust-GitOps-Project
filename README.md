@@ -297,9 +297,9 @@ sudo apt-get install trivy -y
 > [!Important]
 > Enter your gmail password which we copied recently in password field <mark>E-mail Notification --> Advance</mark>
 
-![image](https://github.com/user-attachments/assets/14e254fc-1400-457e-b3f4-046404b66950)
-![image](https://github.com/user-attachments/assets/7be70b3a-b0dc-415c-838a-b1c6fd87c182)
-![image](https://github.com/user-attachments/assets/cffb6e1d-4838-483e-97e0-6851c204ab21)
+![image](https://github.com/harshitsahu2311/Wanderlust-GitOps-Project/blob/main/Assets/Images/email_notify.png)
+![image](https://github.com/harshitsahu2311/Wanderlust-GitOps-Project/blob/main/Assets/Images/test_conf.png)
+![image](https://github.com/harshitsahu2311/Wanderlust-GitOps-Project/blob/main/Assets/Images/testemail.png)
 
 #
 ## Steps to implement the project:
@@ -310,10 +310,10 @@ sudo apt-get install trivy -y
   - Pipeline: Stage View
 #
 - <b id="Owasp">Configure OWASP, move to <mark>Manage Jenkins --> Plugins --> Available plugins</mark> (Jenkins Worker)</b>
-![image](https://github.com/user-attachments/assets/da6a26d3-f742-4ea8-86b7-107b1650a7c2)
+![image](https://github.com/harshitsahu2311/Wanderlust-GitOps-Project/blob/main/Assets/Images/owasp_plugin.png)
 
 - <b id="Sonar">After OWASP plugin is installed, Now move to <mark>Manage jenkins --> Tools</mark> (Jenkins Worker)</b>
-![image](https://github.com/user-attachments/assets/3b8c3f20-202e-4864-b3b6-b48d7a604ee8)
+![image](https://github.com/harshitsahu2311/Wanderlust-GitOps-Project/blob/main/Assets/Images/owasp_tool.png)
 #
 - <b>Login to SonarQube server and create the credentials for jenkins to integrate with SonarQube</b>
   - Navigate to <mark>Administration --> Security --> Users --> Token</mark>
@@ -323,22 +323,21 @@ sudo apt-get install trivy -y
 
 #
 - <b>Now, go to <mark> Manage Jenkins --> credentials</mark> and add Sonarqube credentials:</b>
-![image](https://github.com/user-attachments/assets/0688e105-2170-4c3f-87a3-128c1a05a0b8)
+![image](https://github.com/harshitsahu2311/Wanderlust-GitOps-Project/blob/main/Assets/Images/sonar-cred.png)
 #
 - <b>Go to <mark> Manage Jenkins --> Tools</mark> and search for SonarQube Scanner installations:</b>
-![image](https://github.com/user-attachments/assets/2fdc1e56-f78c-43d2-914a-104ec2c8ea86)
+![image](https://github.com/harshitsahu2311/Wanderlust-GitOps-Project/blob/main/Assets/Images/sonar-tool.png)
 #
 - <b> Go to <mark> Manage Jenkins --> credentials</mark> and add Github credentials to push updated code from the pipeline:</b>
-![image](https://github.com/user-attachments/assets/4d0c1a47-621e-4aa2-a0b1-71927fcdaef4)
+![image](https://github.com/harshitsahu2311/Wanderlust-GitOps-Project/blob/main/Assets/Images/github-cred.png)
 > [!Note]
 > While adding github credentials add Personal Access Token in the password field.
 #
 - <b>Go to <mark> Manage Jenkins --> System</mark> and search for SonarQube installations:</b>
-![image](https://github.com/user-attachments/assets/ae866185-cb2b-4e83-825b-a125ec97243a)
+![image](https://github.com/harshitsahu2311/Wanderlust-GitOps-Project/blob/main/Assets/Images/sonar-system.png)
 #
 - <b>Now again, Go to <mark> Manage Jenkins --> System</mark> and search for Global Trusted Pipeline Libraries:</b
-![image](https://github.com/user-attachments/assets/874b2e03-49b9-4c26-9b0f-bd07ce70c0f1)
-![image](https://github.com/user-attachments/assets/1ca83b43-ce85-4970-941d-9a819ce4ecfd)
+![image](https://github.com/harshitsahu2311/Wanderlust-GitOps-Project/blob/main/Assets/Images/trusted_pipe.png)
 #
 - <b>Login to SonarQube server, go to <mark>Administration --> Webhook</mark> and click on create </b>
 ![image](https://github.com/user-attachments/assets/16527e72-6691-4fdf-a8d2-83dd27a085cb)
