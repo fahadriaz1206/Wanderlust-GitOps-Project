@@ -368,10 +368,10 @@ chmod 777 /var/run/docker.sock
 - <b> Go to Master Machine and add our own eks cluster to argocd for application deployment using cli</b>
   - <b>Login to argoCD from CLI</b>
   ```bash
-   argocd login 52.53.156.187:32738 --username admin
+   argocd login 65.2.186.181:31797 --username admin
   ```
 > [!Tip]
-> 52.53.156.187:32738 --> This should be your argocd url
+> 65.2.186.181:31797 --> This should be your argocd url
 
   ![image](https://github.com/harshitsahu2311/Wanderlust-GitOps-Project/blob/main/Assets/Images/argo-login.png)
 
@@ -384,47 +384,44 @@ chmod 777 /var/run/docker.sock
   ```bash
   kubectl config get-contexts
   ```
-  ![image](https://github.com/user-attachments/assets/4cab99aa-cef3-45f6-9150-05004c2f09f8)
+  ![image](https://github.com/harshitsahu2311/Wanderlust-GitOps-Project/blob/main/Assets/Images/get-context.png)
   - <b>Add your cluster to argocd</b>
   ```bash
-  argocd cluster add Wanderlust@wanderlust.us-west-1.eksctl.io --name wanderlust-eks-cluster
+  argocd cluster add iam-root-account@wanderlust.ap-south-1.eksctl.io --name wanderlust-eks-cluster
   ```
   > [!Tip]
-  > Wanderlust@wanderlust.us-west-1.eksctl.io --> This should be your EKS Cluster Name.
+  > iam-root-account@wanderlust.ap-south-1.eksctl.io --> This should be your EKS Cluster Name.
 
-  ![image](https://github.com/user-attachments/assets/0f36aafd-bab9-4ef8-ba5d-3eb56d850604)
+  ![image](https://github.com/harshitsahu2311/Wanderlust-GitOps-Project/blob/main/Assets/Images/iam-cluster.png)
   - <b> Once your cluster is added to argocd, go to argocd console <mark>Settings --> Clusters</mark> and verify it</b>
-  ![image](https://github.com/user-attachments/assets/4490b632-19fd-4499-a341-fabf8488d13c)
+  ![image](https://github.com/harshitsahu2311/Wanderlust-GitOps-Project/blob/main/Assets/Images/argo-setting.png)
 #
 - <b>Go to <mark>Settings --> Repositories</mark> and click on <mark>Connect repo</mark> </b>
-![image](https://github.com/user-attachments/assets/cc8728e5-546b-4c46-bd4c-538f4cd6a63d)
-![image](https://github.com/user-attachments/assets/eb3646e2-db84-4439-a11a-d4168080d9cc)
-![image](https://github.com/user-attachments/assets/a07f8703-5ef3-4524-aaa7-39a139335eb7)
+![image](https://github.com/harshitsahu2311/Wanderlust-GitOps-Project/blob/main/Assets/Images/argo-repo.png)
+![image](https://github.com/harshitsahu2311/Wanderlust-GitOps-Project/blob/main/Assets/Images/argo-repo-add.png)
+![image](https://github.com/harshitsahu2311/Wanderlust-GitOps-Project/blob/main/Assets/Images/argo-repo-check.png)
 > [!Note]
 > Connection should be successful
 
 - <b>Now, go to <mark>Applications</mark> and click on <mark>New App</mark></b>
 
-![image](https://github.com/user-attachments/assets/ec2d7a51-d78f-4947-a90b-258944ad59a2)
+![image](https://github.com/harshitsahu2311/Wanderlust-GitOps-Project/blob/main/Assets/Images/argo-general.png)
 
 > [!Important]
 > Make sure to click on the <mark>Auto-Create Namespace</mark> option while creating argocd application
 
-![image](https://github.com/user-attachments/assets/55dcd3c2-5424-4efb-9bee-1c12bbf7f158)
-![image](https://github.com/user-attachments/assets/3e2468ff-8cb2-4bda-a8cc-0742cd6d0cae)
+![image](https://github.com/harshitsahu2311/Wanderlust-GitOps-Project/blob/main/Assets/Images/argo-source.png)
 
 - <b>Congratulations, your application is deployed on AWS EKS Cluster</b>
-![image](https://github.com/user-attachments/assets/bc2d9680-fe00-49f9-81bf-93c5595c20cc)
-![image](https://github.com/user-attachments/assets/1ea9d486-656e-40f1-804d-2651efb54cf6)
+![image](https://github.com/harshitsahu2311/Wanderlust-GitOps-Project/blob/main/Assets/Images/argo-ash.png)
+![image](https://github.com/harshitsahu2311/Wanderlust-GitOps-Project/blob/main/Assets/Images/argo-work.png)
 - <b>Open port 31000 and 31100 on worker node and Access it on browser</b>
 ```bash
 <worker-public-ip>:31000
 ```
-![image](https://github.com/user-attachments/assets/a4b2a4b4-e1aa-4b22-ac6b-f40003d0723a)
-![image](https://github.com/user-attachments/assets/06f9f1c8-094d-4d9f-a9d8-256fb18a9ae4)
+![image](https://github.com/harshitsahu2311/Wanderlust-GitOps-Project/blob/main/Assets/Images/aws.png)
+![image](https://github.com/harshitsahu2311/Wanderlust-GitOps-Project/blob/main/Assets/Images/wander.png)
 ![image](https://github.com/user-attachments/assets/64394f90-8610-44c0-9f63-c3a21eb78f55)
-- <b>Email Notification</b>
-![image](https://github.com/user-attachments/assets/0ab1ef47-f939-4618-8651-6aa9274721f4)
 
 #
 ## How to monitor EKS cluster, kubernetes components and workloads using prometheus and grafana via HELM (On Master machine)
@@ -486,7 +483,7 @@ kubectl get svc -n prometheus
 ```bash
 kubectl edit svc stable-kube-prometheus-sta-prometheus -n prometheus
 ```
-![image](https://github.com/user-attachments/assets/90f5dc11-23de-457d-bbcb-944da350152e)
+![image](https://github.com/harshitsahu2311/Wanderlust-GitOps-Project/blob/main/Assets/Images/prom-node.png)
 ![image](https://github.com/user-attachments/assets/ed94f40f-c1f9-4f50-a340-a68594856cc7)
 
 #
@@ -500,7 +497,7 @@ kubectl get svc -n prometheus
 ```bash
 kubectl edit svc stable-grafana -n prometheus
 ```
-![image](https://github.com/user-attachments/assets/4a2afc1f-deba-48da-831e-49a63e1a8fb6)
+![image](https://github.com/harshitsahu2311/Wanderlust-GitOps-Project/blob/main/Assets/Images/grafana-node.png)
 
 #
 - Check grafana service
