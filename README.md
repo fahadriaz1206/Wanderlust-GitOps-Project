@@ -57,12 +57,12 @@ WanderLust is a simple MERN travel blog website ✈ This project is aimed to hel
 #
 
 > [!Note]
-> This project will be implemented on North California region (us-west-1).
+> This project will be implemented on Mumbai region (ap-south-1).
 
 - <b>Create 1 Master machine on AWS with 2CPU, 8GB of RAM (t2.large) and 29 GB of storage and install Docker on it.</b>
 #
 - <b>Open the below ports in security group of master machine and also attach same security group to Jenkins worker node (We will create worker node shortly)</b>
-![image](https://github.com/user-attachments/assets/4e5ecd37-fe2e-4e4b-a6ba-14c7b62715a3)
+![image](https://github.com/harshitsahu2311/Wanderlust-GitOps-Project/blob/main/Assets/Images/Screenshot%202025-01-18%20135759.png)
 
 > [!Note]
 > We are creating this master machine because we will configure Jenkins master, eksctl, EKS cluster creation from here.
@@ -96,7 +96,7 @@ sudo apt-get install jenkins -y
 #
 - <b id="EKS">Create EKS Cluster on AWS (Master machine)</b>
   - IAM user with **access keys and secret access keys**
-  - AWSCLI should be configured (<a href="https://github.com/DevMadhup/DevOps-Tools-Installations/blob/main/AWSCLI/AWSCLI.sh">Setup AWSCLI</a>)
+  - AWSCLI should be configured (<a href="https://github.com/harshitsahu2311/DevOps-Tools-Installation/blob/main/AWSCLI/AWSCLI.sh">Setup AWSCLI</a>)
   ```bash
   curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
   sudo apt install unzip
@@ -105,7 +105,7 @@ sudo apt-get install jenkins -y
   aws configure
   ```
 
-  - Install **kubectl** (Master machine)(<a href="https://github.com/DevMadhup/DevOps-Tools-Installations/blob/main/Kubectl/Kubectl.sh">Setup kubectl </a>)
+  - Install **kubectl** (Master machine)(<a href="https://github.com/harshitsahu2311/DevOps-Tools-Installation/blob/main/Kubectl/Kubectl.sh">Setup kubectl </a>)
   ```bash
   curl -o kubectl https://amazon-eks.s3.us-west-2.amazonaws.com/1.19.6/2021-01-05/bin/linux/amd64/kubectl
   chmod +x ./kubectl
@@ -113,7 +113,7 @@ sudo apt-get install jenkins -y
   kubectl version --short --client
   ```
 
-  - Install **eksctl** (Master machine) (<a href="https://github.com/DevMadhup/DevOps-Tools-Installations/blob/main/eksctl%20/eksctl.sh">Setup eksctl</a>)
+  - Install **eksctl** (Master machine) (<a href="https://github.com/harshitsahu2311/DevOps-Tools-Installation/blob/main/eksctl%20/eksctl.sh">Setup eksctl</a>)
   ```bash
   curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
   sudo mv /tmp/eksctl /usr/local/bin
@@ -123,32 +123,32 @@ sudo apt-get install jenkins -y
   - <b>Create EKS Cluster (Master machine)</b>
   ```bash
   eksctl create cluster --name=wanderlust \
-                      --region=us-east-2 \
-                      --version=1.30 \
-                      --without-nodegroup
+  --region=ap-south-1 \
+  --version=1.30 \
+  --without-nodegroup
   ```
   - <b>Associate IAM OIDC Provider (Master machine)</b>
   ```bash
   eksctl utils associate-iam-oidc-provider \
-    --region us-east-2 \
-    --cluster wanderlust \
-    --approve
+  --region ap-south-1 \
+  --cluster wanderlust \
+  --approve
   ```
   - <b>Create Nodegroup (Master machine)</b>
   ```bash
   eksctl create nodegroup --cluster=wanderlust \
-                       --region=us-east-2 \
-                       --name=wanderlust \
-                       --node-type=t2.large \
-                       --nodes=2 \
-                       --nodes-min=2 \
-                       --nodes-max=2 \
-                       --node-volume-size=29 \
-                       --ssh-access \
-                       --ssh-public-key=eks-nodegroup-key 
+  --region=ap-south-1 \
+  --name=wanderlust \
+  --node-type=t2.large \
+  --nodes=2 \
+  --nodes-min=2 \
+  --nodes-max=2 \
+  --node-volume-size=29 \
+  --ssh-access \
+  --ssh-public-key=mumbai-key 
   ```
 > [!Note]
->  Make sure the ssh-public-key "eks-nodegroup-key is available in your aws account"
+>  Make sure the ssh-public-key "mumbai-key is available in your aws account"
 #
 - <b id="Jenkins-worker">Setting up jenkins worker node</b>
   - Create a new EC2 instance (Jenkins Worker) with 2CPU, 8GB of RAM (t2.large) and 29 GB of storage and install java on it
@@ -157,9 +157,9 @@ sudo apt-get install jenkins -y
   sudo apt install fontconfig openjdk-17-jre -y
   ```
   - Create an IAM role with <mark>administrator access</mark> attach it to the jenkins worker node <mark>Select Jenkins worker node EC2 instance --> Actions --> Security --> Modify IAM role</mark>
-  ![image](https://github.com/user-attachments/assets/1a9060db-db11-40b7-86f0-47a65e8ed68b)
+  ![image](https://github.com/harshitsahu2311/Wanderlust-GitOps-Project/blob/main/Assets/Images/iamrole.png)
 
-  - Configure AWSCLI (<a href="https://github.com/DevMadhup/DevOps-Tools-Installations/blob/main/AWSCLI/AWSCLI.sh">Setup AWSCLI</a>)
+  - Configure AWSCLI (<a href="https://github.com/harshitsahu2311/DevOps-Tools-Installation/blob/main/AWSCLI/AWSCLI.sh">Setup AWSCLI</a>)
   ```bash
   sudo su
   ```
@@ -175,25 +175,25 @@ sudo apt-get install jenkins -y
   ```bash
   ssh-keygen
   ```
-  ![image](https://github.com/user-attachments/assets/0c8ecb74-1bc5-46f9-ad55-1e22e8092198)
+  ![image](https://github.com/harshitsahu2311/Wanderlust-GitOps-Project/blob/main/Assets/Images/ssh.png)
 #
   - <b>Now move to directory where your ssh keys are generated and copy the content of public key and paste to authorized_keys file of the Jenkins worker node.</b>
 #
   - <b>Now, go to the jenkins master and navigate to <mark>Manage jenkins --> Nodes</mark>, and click on Add node </b>
-    - <b>name:</b> Node
+    - <b>Name:</b> Node
     - <b>type:</b> permanent agent
     - <b>Number of executors:</b> 2
-    - Remote root directory
+    - <b>Remote root directory:</b> /home/ubuntu
     - <b>Labels:</b> Node
     - <b>Usage:</b> Only build jobs with label expressions matching this node
     - <b>Launch method:</b> Via ssh
     - <b>Host:</b> \<public-ip-worker-jenkins\>
-    - <b>Credentials:</b> <mark>Add --> Kind: ssh username with private key --> ID: Worker --> Description: Worker --> Username: root --> Private key: Enter directly --> Add Private key</mark>
+    - <b>Credentials:</b> <mark>Add --> Kind: ssh username with private key --> ID: Worker --> Description: Worker --> Username: ubuntu --> Private key: Enter directly --> Add Private key</mark>
     - <b>Host Key Verification Strategy:</b> Non verifying Verification Strategy
     - <b>Availability:</b> Keep this agent online as much as possible
 #
   - And your jenkins worker node is added
-  ![image](https://github.com/user-attachments/assets/cab93696-a4e2-4501-b164-8287d7077eef)
+  ![image](https://github.com/harshitsahu2311/Wanderlust-GitOps-Project/blob/main/Assets/Images/node.png)
 
 # 
 - <b id="docker">Install docker (Jenkins Worker)</b>
@@ -251,7 +251,7 @@ sudo apt-get install trivy -y
   kubectl get svc -n argocd
   ```
   - <b> Check the port where ArgoCD server is running and expose it on security groups of a worker node</b>
-  ![image](https://github.com/user-attachments/assets/a2932e03-ebc7-42a6-9132-82638152197f)
+  ![image](https://github.com/harshitsahu2311/Wanderlust-GitOps-Project/blob/main/Assets/Images/argocdpod.png)
   - <b>Access it on browser, click on advance and proceed with</b>
   ```bash
   <public-ip-worker>:<port>
