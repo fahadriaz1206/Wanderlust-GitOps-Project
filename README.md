@@ -341,22 +341,23 @@ sudo apt-get install trivy -y
 #
 - <b>Login to SonarQube server, go to <mark>Administration --> Webhook</mark> and click on create </b>
 ![image](https://github.com/user-attachments/assets/16527e72-6691-4fdf-a8d2-83dd27a085cb)
-![image](https://github.com/user-attachments/assets/a8b45948-766a-49a4-b779-91ac3ce0443c)
+![image](https://github.com/harshitsahu2311/Wanderlust-GitOps-Project/blob/main/Assets/Images/sonar-webhook.png)
 #
 - <b>Now, go to github repository and under <mark>Automations</mark> directory update the <mark>instance-id</mark> field on both the <mark>updatefrontendnew.sh updatebackendnew.sh</mark> with the k8s worker's instance id</b>
-![image](https://github.com/user-attachments/assets/3cb044b4-df88-4d68-bf7c-775cf78d5bf2)
+![image](https://github.com/harshitsahu2311/Wanderlust-GitOps-Project/blob/main/Assets/Images/instance-id.png)
 #
 - <b>Navigate to <mark> Manage Jenkins --> credentials</mark> and add credentials for docker login to push docker image:</b>
-![image](https://github.com/user-attachments/assets/1a8287fc-b205-4156-8342-3f660f15e8fa)
+![image](https://github.com/harshitsahu2311/Wanderlust-GitOps-Project/blob/main/Assets/Images/dockerhuub.png)
 #
 - <b>Create a <mark>Wanderlust-CI</mark> pipeline</b>
-![image](https://github.com/user-attachments/assets/55c7b611-3c20-445f-a49c-7d779894e232)
+![image](https://github.com/harshitsahu2311/Wanderlust-GitOps-Project/blob/main/Assets/Images/ci-job.png)
+![image](https://github.com/harshitsahu2311/Wanderlust-GitOps-Project/blob/main/Assets/Images/ci-pipeline.png)
 
 #
 - <b>Create one more pipeline <mark>Wanderlust-CD</mark></b>
-![image](https://github.com/user-attachments/assets/23f84a93-901b-45e3-b4e8-a12cbed13986)
-![image](https://github.com/user-attachments/assets/ac79f7e6-c02c-4431-bb3b-5c7489a93a63)
-![image](https://github.com/user-attachments/assets/46a5937f-e06e-4265-ac0f-42543576a5cd)
+![image](https://github.com/harshitsahu2311/Wanderlust-GitOps-Project/blob/main/Assets/Images/cd-job.png)
+![image](https://github.com/harshitsahu2311/Wanderlust-GitOps-Project/blob/main/Assets/Images/cd-pipeline.png)
+![image](https://github.com/harshitsahu2311/Wanderlust-GitOps-Project/blob/main/Assets/Images/all-job.png)
 #
 - <b>Provide permission to docker socket so that docker build and push command do not fail (Jenkins Worker)</b>
 ```bash
@@ -372,7 +373,7 @@ chmod 777 /var/run/docker.sock
 > [!Tip]
 > 52.53.156.187:32738 --> This should be your argocd url
 
-  ![image](https://github.com/user-attachments/assets/7d05e5ca-1a16-4054-a321-b99270ca0bf9)
+  ![image](https://github.com/harshitsahu2311/Wanderlust-GitOps-Project/blob/main/Assets/Images/argo-login.png)
 
   - <b>Check how many clusters are available in argocd </b>
   ```bash
